@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-5(9-1))-9n^h4j!a_jv380wyxc4hdkwn-im*)%ik2&yg*%aqw_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# settings.py
+
+ALLOWED_HOSTS = ['bank-1-b0fs.onrender.com', 'localhost', '127.0.0.1', '[::1]']
+
 
 
 # Application definition
