@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+        background: url('/static/images/wallpaper.webp') no-repeat center center fixed;
+        background-size: cover;
+        color: #2c2321;
+        justify-content: space-between;
+        align-items: center;
+    }
+      header,
+      footer {
+        background-color: #44749d;
+        color: #ffffff;
+        text-align: center;
+        width: 100%;
+        padding: 20px 0;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .container {
+        background-color: #44749d;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 60vw;
+      }
+      .inputField {
+        margin-bottom: 15px;
+      }
+      .inputField input,
+      .inputField label {
+        color: #2c2321;
+      }
+      input {
+        background-color: #44749d;
+        border: 1px solid #3e4b51;
+        padding: 10px;
+        border-radius: 5px;
+        color: #2c2321;
+      }
+      button {
+        background-color: #4a90e2;
+        border: none;
+        padding: 10px 20px;
+        color: #2c2321;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+      button:hover {
+        background-color: #3a7bd5;
+      }
+      a {
+        color: #79a6d2;
+        text-decoration: none;
+        margin-top: 15px;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .inputContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'lista_clientes' %}">Home</a>
+      <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'login' %}">Log Out</a>
+      <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'registro' %}">Registro de cliente</a>
+    </header>
+    <main>
+      <div class="container">
+        <h2>Registro</h2>
+        <form method="post">
+          <div class="inputContainer">{% csrf_token %} {{ form.as_p }}</div>
+          <button style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" type="submit">Registrarse</button>
+        </form>
+        <a href="{% url 'lista_clientes' %}">Home</a>
+      </div>
+    </main>
+    <footer>&copy;AuthoBank.</footer>
+  </body>
+</html>
