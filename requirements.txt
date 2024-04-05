@@ -1,0 +1,8 @@
+Django>=3.2,<4.0
+djangorestframework>=3.12.4,<4.0
+psycopg2-binary>=2.9.1  # Si estás utilizando PostgreSQL
+mysqlclient>=2.0.3  # Si estás utilizando MySQL
+gunicorn>=20.1.0
+django-cors-headers>=3.7.0
+djangorestframework-simplejwt>=4.7.2  # Para la autenticación JWT
+python-dotenv>=0.19.1
