@@ -113,7 +113,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='movimiento',
             name='saldo',
-            field=models.DecimalField(decimal_places=2, default='', max_digits=15),
+            field=models.DecimalField(decimal_places=2, default='0.00', max_digits=15),
         ),
         migrations.AddField(
             model_name='movimiento',

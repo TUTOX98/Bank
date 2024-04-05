@@ -86,14 +86,16 @@ WSGI_APPLICATION = 'trabajoFinal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bank',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bank_52hj',  # Nombre de tu base de datos
+        'USER': 'root',  # Tu nombre de usuario
+        'PASSWORD': '7w9yWbxWqwKku46fmx9KHcNKFf3ldYi3',  # Tu contraseña
+        # Hostname de la base de datos
+        'HOST': 'dpg-co7ousn79t8c73enck9g-a.oregon-postgres.render.com',
+        'PORT': '5432',  # Puerto, usa 5432 si es el predeterminado de PostgreSQL
     }
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
