@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', views.landing_view, name='landing_page'), 
@@ -19,4 +21,4 @@ urlpatterns = [
     path('cliente/eliminar/<int:cliente_id>/', views.eliminar_cliente, name='eliminar_cliente'),
     path('cuenta/eliminar/<int:cuenta_id>/', views.eliminar_cuenta, name='eliminar_cuenta'),
     path('retirar_dinero_cliente/', views.retirar_dinero_cliente, name='retirar_dinero_cliente'),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
