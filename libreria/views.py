@@ -81,7 +81,7 @@ def lista_cuentas(request):
     clientes = Cliente.objects.all().values('cedula_cli', 'nombre_cli')  
     clientes_dict = {cliente['cedula_cli']: cliente['nombre_cli'] for cliente in clientes}  
     
-    paginator = Paginator(cuentas_list, 5) 
+    paginator = Paginator(cuentas_list, 3) 
     page_number = request.GET.get('page')
     cuentas_page = paginator.get_page(page_number)
     for cuenta in cuentas_page:
@@ -96,7 +96,7 @@ def lista_clientes(request):
     if cedula:
         lista_clientes = lista_clientes.filter(cedula_cli__icontains=cedula)
 
-    paginator = Paginator(lista_clientes, 5)
+    paginator = Paginator(lista_clientes, 3)
     page_number = request.GET.get('page')
     clientes_page = paginator.get_page(page_number)
     return render(request, 'lista_clientes.html', {'clientes_page': clientes_page})

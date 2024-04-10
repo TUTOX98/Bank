@@ -17,7 +17,7 @@
         flex-direction: column;
         height: 100vh;
         margin: 0;
-        background: url('/static/images/wallpaper.webp') no-repeat center center fixed;
+        {% comment %} background: url('/static/images/wallpaper.webp') no-repeat center center fixed; {% endcomment %}
         background-size: cover;
         color: #2c2321;
         justify-content: space-between;
@@ -32,12 +32,14 @@
         padding: 20px 0;
       }
       main {
-        padding: 20px;
-        width: 90%;
-        max-width: 800px;
+        padding: 0;
+        width: 100%;
+        height: 100%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
+        justify-content: flex-start;
       }
       ul {
         list-style-type: none;
@@ -55,16 +57,24 @@
         align-items: center;
       }
       .btn {
-        background-color: #4a90e2;
+        background-color: #858585 !important;
         border: none;
+        padding: 10px 20px;
+        color: #ffffff !important;
         border-radius: 5px;
-      }
-      .btn:hover {
-        background-color: #3a7bd5;
-      }
-      .btn:active {
-        background-color: #3a7bd5;
-      }
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+    .btn:hover {
+      background-color: #3a7bd5 !important;
+    }
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
       .sectionButton {
         display: flex;
         justify-content: space-between;
@@ -73,6 +83,70 @@
       }
       .sectionButton a {
         margin: 0 5px;
+      }
+      .sectionMain1 {
+        height: 100%;
+        background-color: #44749d;
+        width: 30vw;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+      .sectionMain1 li{
+        border-bottom: 4px solid #ffffff;
+        border-radius: 0;
+        margin: 0px;
+        height: 7vh;
+        padding: 0px !important;
+      }
+      .sectionMain1 h1{
+        margin: 20px;
+        color: #ffffff;
+      } 
+      .sectionMain1 a{
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        display: flex;
+        color: #ffffff;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+      }
+      .sectionMain1 ul{
+        list-style-type: none;
+        padding: 0;
+        width: 100%;
+      }
+      .sectionMain2 {
+        height: 100%;
+        width: 70vw;
+      }
+      .containerSectionMain {
+        background-color: #44749d;
+        padding: 20px;
+        border-radius: 5px;
+        height: 90%;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+      .containerSectionMain ul {
+        list-style-type: none;
+        padding: 0;
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: #ffffff;
+      }
+      .containerSectionMain li {
+        background-color: #ffffff !important;
+        margin: 0 !important;
+        border-bottom: 1px solid black;
       }
     </style>
   </head>
@@ -83,6 +157,22 @@
       <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'registro' %}">Registro de cliente</a>
     </header>
     <main>
+      <div class="sectionMain1">
+        <h1>Menú</h1>
+        <ul>
+          <li>
+            <a href="{% url 'lista_clientes' %}">Lista de clientes</a>
+          </li>
+          <li>
+            <a href="{% url 'lista_cuentas' %}">Lista de cuentas</a>
+          </li>
+          <li>
+            <a href="{% url 'crear_cuenta' %}">Crear cuenta</a>
+          </li>
+        </ul>
+      </div>
+      <div class="sectionMain2">
+        <div class="containerSectionMain">
       <h1>Lista de Cuentas</h1>
       {% if messages %}
       <ul style="color:#2c2321" class="messages">
@@ -131,6 +221,8 @@
           >Retirar dinero</a
         > {% endcomment %}
       </div>
+      </div>
+    </div>
     </main>
     <footer></footer>
   </body>

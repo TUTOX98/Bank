@@ -17,7 +17,7 @@
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            background: url('/static/images/wallpaper.webp') no-repeat center center fixed;
+            {% comment %} background: url('/static/images/wallpaper.webp') no-repeat center center fixed; {% endcomment %}
             background-size: cover;
             color: #2c2321;
             justify-content: space-between;
@@ -36,10 +36,12 @@
             align-items: center;
             margin-top: 20px;
             text-align: center;
+            color: #ffffff;
         }
         .container{
             background-color: #44749d;
             padding: 40px;
+            color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
             display: flex;
@@ -48,29 +50,30 @@
         }
         .inputField {
             margin-bottom: 15px;
+            width: 100%;
         }
         .inputField input{
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 10px;
             width: 100%;
         }
         .inputField label {
             margin-bottom: 5px;
         }
         button {
-            background-color: #4a90e2;
+            background-color: #858585 !important;
             border: none;
             padding: 10px 20px;
-            color: #2c2321;
+            color: #ffffff;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
         }
         button:hover {
-            background-color: #3a7bd5;
+            background-color: #3a7bd5 !important;
         }
         a {
-            color: #79a6d2;
+            color: #ffffff;
             text-decoration: none;
             margin-top: 15px;
         }
@@ -101,7 +104,7 @@
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" type="submit">Iniciar Sesión</button>
+            <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
             <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
             <p>Para crear una cuenta,<br> acuda precencialmente al banco</p>
             

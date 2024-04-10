@@ -17,7 +17,7 @@
         flex-direction: column;
         height: 100vh;
         margin: 0;
-        background: url("/static/images/wallpaper.webp") no-repeat center center
+        {% comment %} background: url("/static/images/wallpaper.webp") no-repeat center center {% endcomment %}
           fixed;
         background-size: cover;
         color: #2c2321;
@@ -32,13 +32,21 @@
         width: 100%;
         padding: 20px 0;
       }
+      header{
+        border-bottom: 1px solid black;
+      }
+      footer{
+        border-top: 1px solid black;
+      }
       main {
-        padding: 20px;
-        width: 90%;
-        max-width: 800px;
+        padding: 0;
+        width: 100%;
+        height: 100%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
+        justify-content: flex-start;
       }
       form {
         width: 100%;
@@ -50,8 +58,11 @@
         margin-bottom: 10px;
         border-radius: 5px;
         border: 1px solid #3e4b51;
-        background-color: #44749d;
+        background-color: #ffffff;
         color: #2c2321;
+      }
+      .paginator{
+        color: #ffffff !important;
       }
       .sectionButton {
         display: flex;
@@ -79,96 +90,216 @@
         margin: 0;
       }
       .btn {
-        background-color: #4a90e2;
-        border: none;
-        border-radius: 5px;
+          background-color: #858585 !important;
+          border: none;
+          padding: 10px 20px;
+          color: #ffffff !important;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.2s ease-in-out;
       }
       .btn:hover {
-        background-color: #3a7bd5;
-      }
-      .btn:active {
-        background-color: #3a7bd5;
+        background-color: #3a7bd5 !important;
       }
       a {
-        color: #79a6d2;
+        color: #ffffff;
         text-decoration: none;
       }
       a:hover {
         text-decoration: underline;
       }
+      .sectionMain1 {
+        height: 100%;
+        background-color: #44749d;
+        width: 30vw;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+      .sectionMain1 li{
+        border-bottom: 4px solid #ffffff;
+        border-radius: 0;
+        margin: 0px;
+        height: 7vh;
+        padding: 0px !important;
+      }
+      .sectionMain1 h1{
+        margin: 20px;
+        color: #ffffff;
+      } 
+      .sectionMain1 a{
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        display: flex;
+        color: #ffffff;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+      }
+      .sectionMain2 {
+        height: 100%;
+        width: 70vw;
+      }
+      .containerSectionMain {
+        background-color: #44749d;
+        padding: 20px;
+        border-radius: 5px;
+        height: 90%;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+      .containerSectionMain ul {
+        list-style-type: none;
+        padding: 0;
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: #ffffff;
+      }
+      .containerSectionMain li {
+        background-color: #ffffff !important;
+        margin: 0 !important;
+        border-bottom: 1px solid black;
+      }
     </style>
   </head>
   <body>
     <header>
-      <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'lista_clientes' %}">Home</a>
-      <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'login' %}">Log Out</a>
-      <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'registro' %}">Registro de cliente</a>
+      <a
+        style="background-color: #bdb8ad; color: #2c2321"
+        class="btn btn-primary"
+        href="{% url 'lista_clientes' %}"
+        >Home</a
+      >
+      <a
+        style="background-color: #bdb8ad; color: #2c2321"
+        class="btn btn-primary"
+        href="{% url 'login' %}"
+        >Log Out</a
+      >
+      <a
+        style="background-color: #bdb8ad; color: #2c2321"
+        class="btn btn-primary"
+        href="{% url 'registro' %}"
+        >Registro de cliente</a
+      >
     </header>
     <main>
-      <h1>Lista de Clientes</h1>
-      <form action="" method="GET">
-        <input
-          type="text"
-          name="cedula"
-          placeholder="Buscar por cédula"
-          value="{{ request.GET.cedula }}"
-        />
-        <div class="sectionButton">
-          <button style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" type="submit">Buscar</button>
-          <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="?">Reiniciar filtro</a>
-        </div>
-      </form>
-      <ul>
-        {% for cliente in clientes_page %}
-        <li>
-          {{ cliente.nombre_cli }} {{ cliente.apellido_cli }} - {% if cliente.activo %} Activo {% else %} Desactivado {% endif %}
-          <form
-            action="{% url 'activar_desactivar_cliente' cliente.id %}"
-            method="post"
-          >
-            {% csrf_token %}
-            <button style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" type="submit">
-              Activar/desactivar
-            </button>
-          </form>
-          <form
-            style="width: fit-content;"
-            action="{% url 'eliminar_cliente' cliente.id %}"
-            method="post"
-            onsubmit="return confirm('¿Estás seguro de querer eliminar este cliente?');"
-          >
-            {% csrf_token %}
-            <button style="background-color: #dc3545;" class="btn btn-danger" type="submit">Eliminar</button>
-          </form>
-        </li>
-        {% endfor %}
-      </ul>
-      <div>
-        {% if clientes_page.has_previous %}
-        <a href="?page=1">Primera página</a>
-        <a href="?page={{ clientes_page.previous_page_number }}">Anterior</a>
-        {% endif %}
-        {% for num in clientes_page.paginator.page_range %} {% if clientes_page.number == num %}
-        <strong>{{ num }}</strong>
-        {% else %}
-        <a href="?page={{ num }}">{{ num }}</a>
-        {% endif %} {% endfor %}
-        <span
-          >Página {{ clientes_page.number }} de {{ clientes_page.paginator.num_pages }}</span
-        >
-
-        {% if clientes_page.has_next %}
-        <a href="?page={{ clientes_page.next_page_number }}">Siguiente</a>
-        <a href="?page={{ clientes_page.paginator.num_pages }}">Última página</a>
-        {% endif %}
+      <div class="sectionMain1">
+        <h1>Menú</h1>
+        <ul>
+          <li>
+            <a href="{% url 'lista_clientes' %}">Lista de clientes</a>
+          </li>
+          <li>
+            <a href="{% url 'lista_cuentas' %}">Lista de cuentas</a>
+          </li>
+          <li>
+            <a href="{% url 'crear_cuenta' %}">Crear cuenta</a>
+          </li>
+        </ul>
       </div>
-      <div class="sectionButton">
-        <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'lista_cuentas' %}"
-          >Lista de cuentas</a
-        >
-        <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'crear_cuenta' %}"
-          >Crear cuenta</a
-        >
+      <div class="sectionMain2">
+        <div class="containerSectionMain">
+          <h1 style="color:#ffffff">Lista de Clientes</h1>
+          <form action="" method="GET">
+            <input
+              type="text"
+              name="cedula"
+              placeholder="Buscar por cédula"
+              value="{{ request.GET.cedula }}"
+            />
+            <div class="sectionButton">
+              <button
+                style="background-color: #bdb8ad; color: #2c2321"
+                class="btn btn-primary"
+                type="submit"
+              >
+                Buscar
+              </button>
+              <a
+                style="background-color: #bdb8ad; color: #2c2321"
+                class="btn btn-primary"
+                href="?"
+                >Reiniciar filtro</a
+              >
+            </div>
+          </form>
+          <ul>
+            {% for cliente in clientes_page %}
+            <li>
+              {{ cliente.nombre_cli }} {{ cliente.apellido_cli }} - {% if cliente.activo %} Activo {% else %} Desactivado {% endif %}
+              <form
+                action="{% url 'activar_desactivar_cliente' cliente.id %}"
+                method="post"
+              >
+                {% csrf_token %}
+                <button
+                  style="background-color: #bdb8ad; color: #2c2321"
+                  class="btn btn-primary"
+                  type="submit"
+                >
+                  Activar/desactivar
+                </button>
+              </form>
+              <form
+                style="width: fit-content"
+                action="{% url 'eliminar_cliente' cliente.id %}"
+                method="post"
+                onsubmit="return confirm('¿Estás seguro de querer eliminar este cliente?');"
+              >
+                {% csrf_token %}
+                <button
+                  style="background-color: #dc3545"
+                  class="btn btn-danger"
+                  type="submit"
+                >
+                  Eliminar
+                </button>
+              </form>
+            </li>
+            {% endfor %}
+          </ul>
+          <div class="paginator">
+            {% if clientes_page.has_previous %}
+            <a href="?page=1">Primera página</a>
+            <a href="?page={{ clientes_page.previous_page_number }}">Anterior</a>
+            {% endif %} {% for num in clientes_page.paginator.page_range %} {% if clientes_page.number == num %}
+            <strong>{{ num }}</strong>
+            {% else %}
+            <a href="?page={{ num }}">{{ num }}</a>
+            {% endif %} {% endfor %}
+            <span
+              >Página {{ clientes_page.number }} de {{ clientes_page.paginator.num_pages }}</span> 
+
+            {% if clientes_page.has_next %}
+            <a href="?page={{ clientes_page.next_page_number }}">Siguiente</a>
+            <a href="?page={{ clientes_page.paginator.num_pages }}"
+              >Última página</a
+            >
+            {% endif %}
+          </div>
+          <div class="sectionButton">
+            <a
+              style="background-color: #bdb8ad; color: #2c2321"
+              class="btn btn-primary"
+              href="{% url 'lista_cuentas' %}"
+              >Lista de cuentas</a
+            >
+            <a
+              style="background-color: #bdb8ad; color: #2c2321"
+              class="btn btn-primary"
+              href="{% url 'crear_cuenta' %}"
+              >Crear cuenta</a
+            >
+          </div>
+        </div>
       </div>
     </main>
     <footer><a href="{% url 'landing_page' %}">AuthoBank</a></footer>
