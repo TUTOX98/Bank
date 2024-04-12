@@ -186,7 +186,7 @@
           <li>
             {{ cuenta.codigo_cta }}. {{ cuenta.nombre_cta }} - ${{ cuenta.saldo }} - {{ cuenta.cedula }} - {{ cuenta.nombre_cliente }}
             {% if cuenta.nombre_cta == 'Corriente' %}
-              - Cheques: {{ cuenta.chequera }}
+              - Cheque #{{ cuenta.codigo_cta }}564: {{ cuenta.chequera }}
             {% endif %}
             <form action="{% url 'eliminar_cuenta' cuenta.id %}" method="post" style="display: inline;" onsubmit="return confirm('¿Estás seguro de querer eliminar esta cuenta?');">
               {% csrf_token %}
