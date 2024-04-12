@@ -102,24 +102,39 @@
         <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'login' %}">Log Out</a>
     </header>
     <main>
-        <h1>Ingresar Dinero</h1>
-        <form method="post">
-            {% csrf_token %}
-            <label for="cuenta_id">Seleccione la Cuenta:</label>
-            <select id="cuenta_id" name="cuenta_id">
-                {% for cuenta in cuentas %}
-                <option value="{{ cuenta.id }}">{{ cuenta.codigo_cta }}</option>
-                {% endfor %}
-            </select>
-            <label for="monto">Monto a Ingresar:</label>
-            <input type="number" id="monto" name="monto" required>
-            <button style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" type="submit">Ingresar Dinero</button>
-        </form>
-        <div class="sectionButton">
-            <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'lista_cuentas' %}">Lista de cuentas</a>
-            <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'retirar_dinero' %}">Retirar dinero</a>
+        <div class="sectionMain1">
+            <h1>Menú</h1>
+            <ul>
+            <li>
+                <a href="{% url 'ingresar_dinero' %}">Ingresar dinero</a>
+            </li>
+            <li>
+                <a href="{% url 'retirar_dinero' %}">Retirar dinero</a>
+            </li>
+            </ul>
         </div>
-    </main>
+        <div class="sectionMain2">
+            <div class="containerSectionMain">
+                <h1>Ingresar Dinero</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="cuenta_id">Seleccione la Cuenta:</label>
+                    <select id="cuenta_id" name="cuenta_id">
+                        {% for cuenta in cuentas %}
+                        <option value="{{ cuenta.id }}">{{ cuenta.codigo_cta }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="monto">Monto a Ingresar:</label>
+                    <input type="number" id="monto" name="monto" required>
+                    <button style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" type="submit">Ingresar Dinero</button>
+                </form>
+                <div class="sectionButton">
+                    <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'lista_cuentas' %}">Lista de cuentas</a>
+                    <a style="background-color: #bdb8ad;color: #2c2321;" class="btn btn-primary" href="{% url 'retirar_dinero' %}">Retirar dinero</a>
+                </div>
+            </div>
+        </div>
+        </main>
     <footer><a href="{% url 'landing_page' %}">AuthoBank.</a></footer>
 </body>
 </html>
